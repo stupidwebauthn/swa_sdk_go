@@ -18,13 +18,15 @@ type StupidWebauthn struct {
 }
 
 type AuthResponse struct {
-	UserID        int    `json:"user_id"`
-	UserEmail     string `json:"user_email"`
-	UserCreatedAt string `json:"user_created_at"`
+	ID           int     `json:"id"`
+	Email        string  `json:"email"`
+	JwtVersion   int     `json:"jwt_version"`
+	GdprDeleteAt *string `json:"gdpr_delete_at"`
+	CreatedAt    string  `json:"created_at"`
 }
 
 func (p *StupidWebauthn) Middleware(req *http.Request) (*AuthResponse, int, error) {
-	newReq, err := http.NewRequest("POST", p.Url, nil)
+	newReq, err := http.NewRequest(http.MethodGet, p.Url, nil)
 	if err != nil {
 		return nil, http.StatusInternalServerError, err
 	}
