@@ -1,3 +1,5 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/stupidwebauthn/swa_sdk_go.svg)](https://pkg.go.dev/github.com/stupidwebauthn/swa_sdk_go)
+
 # Stupid Webauthn Sdk <small>GoLang</small>
 
 ## Gin example
