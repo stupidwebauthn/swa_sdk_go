@@ -11,14 +11,10 @@ import (
 )
 
 r.Use(func(c *gin.Context) {
-	res, status, err := swa.Middleware(c.Request)
+	header := c.Writer.Header()
+	res, status, err := swa.AuthMiddleware(c.Request, &header)
 	if err != nil {
-		if status == http.StatusUnauthorized {
-			swa.RemoveAuthCookie(c.Writer)
-		}
-		c.Status(status)
-		c.Error(err)
-		c.Abort()
+		c.AbortWithError(status, err)
 		return
 	}
 	c.Set("swa", res)
