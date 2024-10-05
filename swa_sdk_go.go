@@ -30,6 +30,9 @@ type AuthResponse struct {
 func (p *StupidWebauthn) AuthMiddleware(req *http.Request, setCookie *http.Header) (*AuthResponse, int, error) {
 	return p.genericMiddleware("/auth/auth/validate")(req, setCookie)
 }
+func (p *StupidWebauthn) AuthCsrfMiddleware(req *http.Request, setCookie *http.Header) (*AuthResponse, int, error) {
+	return p.genericMiddleware("/auth/auth/csrf/validate")(req, setCookie)
+}
 func (p *StupidWebauthn) AuthDoubleCheckMiddleware(req *http.Request, setCookie *http.Header) (*AuthResponse, int, error) {
 	return p.genericMiddleware("/auth/auth/doublecheck/validate")(req, setCookie)
 }
